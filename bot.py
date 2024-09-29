@@ -1,7 +1,6 @@
 # bot.py
 import os
 import random
-import nations_quest
 
 import discord
 from discord import app_commands
@@ -20,16 +19,14 @@ tree = app_commands.CommandTree(client)
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content == 'Anbennar':
-        await message.channel.send('nerd')
-    print('done')
+@bot.hybrid_command()
+async def anbennar(ctx):
+    await ctx.send("nerd . . .")
+    await bot.tree.sync()
 
-@bot.command(name='Anbennar')
-async def mimu(ctx):
-    await ctx.send('nerd...')
+@bot.hybrid_command(description= 'sends the bot\'s latency.')
+async def ping(ctx: commands.Context):
+    await ctx.send(f'Pong! Latency is {bot.latency}')
+    await bot.tree.sync()
 
 bot.run(TOKEN)
