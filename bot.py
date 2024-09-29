@@ -10,9 +10,12 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-
+OPENAI_KEY = os.getenv('OPENAI_KEY')
+intents = discord.Intents.all()
+intents.message_content = True
+prefix = '/'
+bot = commands.Bot(command_prefix=prefix, intents=intents)
 client = discord.Client(intents=discord.Intents.all())
-bot = commands.Bot(intents=discord.Intents.all(), command_prefix='/')
 tree = app_commands.CommandTree(client)
 
 @client.event
