@@ -14,10 +14,9 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 OPENAI_KEY = os.getenv('OPENAI_KEY')
 intents = discord.Intents.all()
-intents.message_content = True
 prefix = '!'
 bot = commands.Bot(command_prefix=prefix, intents=intents)
-client = discord.Client(intents=discord.Intents.all())
+client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 @client.event
@@ -37,6 +36,19 @@ async def on_message(message):
             await client.send_message(message.channel, 'Rats.')
             await client.send_message(message.channel, 'Rats make me crazy.')
     await client.process_commands(message)
+
+@bot.event
+async def on_message(ctx):
+    if 'crazy' in ctx.content:
+        if bot.user != ctx.author:
+            await ctx.channel.send('Crazy?')
+            await ctx.channel.send('I was crazy once.')
+            await ctx.channel.send('They locked me in a room.')
+            await ctx.channel.send('A rubber room.')
+            await ctx.channel.send('A rubber room with rats.')
+            await ctx.channel.send('Rats.')
+            await ctx.channel.send('Rats make me crazy.')
+    await bot.tree.sync()
 
 @bot.hybrid_command()
 async def anbennar(ctx):
