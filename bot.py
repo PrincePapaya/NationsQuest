@@ -25,7 +25,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(ctx):
-    if 'crazy' in ctx.content:
+    if 'crazy' in ctx.content.lower():
         if bot.user != ctx.author:
             await ctx.channel.send('Crazy?\nI was crazy once.')
             await ctx.channel.send('They locked me in a room.\nA rubber room.')
