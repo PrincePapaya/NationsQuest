@@ -35,7 +35,16 @@ async def on_message(ctx):
 
 @bot.hybrid_command()
 async def hehreact(ctx: commands.Context):
-    await ctx.send("I saw your message!")
+    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+    await message.add_reaction("<:heh:1285699869239152702>")
+    await ctx.send('heh reacted!')
+    await bot.tree.sync()
+
+@bot.hybrid_command()
+async def stressreact(ctx: commands.Context):
+    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+    await message.add_reaction("<:stressed:1285652910952284223>")
+    await ctx.send('heh reacted!')
     await bot.tree.sync()
 
 @bot.hybrid_command()
