@@ -34,7 +34,12 @@ async def on_message(ctx):
     await bot.tree.sync()
 
 @bot.hybrid_command()
-async def anbennar(ctx):
+async def hehreact(ctx: commands.Context):
+    await ctx.send("I saw your message!")
+    await bot.tree.sync()
+
+@bot.hybrid_command()
+async def anbennar(ctx: commands.Context):
     await ctx.send("nerd . . .")
     await bot.tree.sync()
 
