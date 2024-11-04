@@ -2,8 +2,6 @@
 import os
 import random
 
-
-
 import discord
 from discord import app_commands
 from dotenv import load_dotenv
@@ -31,7 +29,15 @@ async def on_message(ctx):
             await ctx.channel.send('They locked me in a room.\nA rubber room.')
             await ctx.channel.send('A rubber room with rats.\nRats.')
             await ctx.channel.send('Rats make me crazy.')
+
+    if 'insane' in ctx.content.lower():
+        if bot.user != ctx.author:
+            await ctx.channel.send('Insane?\nI was insane once.')
+            await ctx.channel.send('They locked me in a house.\nA cushioned house.')
+            await ctx.channel.send('A cushioned house with birds.\nBirds.')
+            await ctx.channel.send('Birds make me insane.')
     await bot.tree.sync()
+
 
 @bot.hybrid_command()
 async def hehreact(ctx: commands.Context):
@@ -44,7 +50,7 @@ async def hehreact(ctx: commands.Context):
 async def stressreact(ctx: commands.Context):
     message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
     await message.add_reaction("<:stressed:1285652910952284223>")
-    await ctx.send('heh reacted!')
+    await ctx.send('stress reacted!')
     await bot.tree.sync()
 
 @bot.hybrid_command()
@@ -56,5 +62,6 @@ async def anbennar(ctx: commands.Context):
 async def ping(ctx: commands.Context):
     await ctx.send(f'Pong! Latency is {bot.latency}')
     await bot.tree.sync()
+
 
 bot.run(TOKEN)
