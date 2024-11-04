@@ -75,6 +75,8 @@ class NationsCountry:
         print(self.action_log.get_log(0))
 
 
+
+
     def log_set(self, resource: str, amount: int, reason: str):
         initial = getattr(self, resource, False)
         if initial == False: 
