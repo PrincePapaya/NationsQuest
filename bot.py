@@ -38,6 +38,18 @@ async def on_message(ctx):
             await ctx.channel.send('Birds make me insane.')
     await bot.tree.sync()
 
+    if 'luck' in ctx.content.lower() and 'amakiir' in ctx.content.lower():
+        if bot.user != ctx.author:
+            await ctx.channel.send("Sword of Sight, Sword of Sight,\nFights whatever a Sword can fight,")
+            await ctx.channel.send("If you tell a lie, it’ll know if you’re right,\nCan it swing, will it land?")
+            await ctx.channel.send("With Amakiiri luck, no it can’t!\n(No need to) watch out, here comes the Sword of Sightttttt!")
+    await bot.tree.sync()
+    
+    if ':pray:' in ctx.content.lower():
+        if bot.user != ctx.author:
+            await ctx.channel.send("Thank Ta'La :pray:")
+    await bot.tree.sync()
+
 
 @bot.hybrid_command()
 async def hehreact(ctx: commands.Context):
