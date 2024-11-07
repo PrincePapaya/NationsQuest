@@ -15,6 +15,8 @@ class Character:
         self.wisdom = 1
         self.charisma = 1
 
+        self.stats_to_allocate = 4
+
         self.max_hp = 15 + self.constitution * 5
         self.hitpoints = self.max_hp
 
@@ -45,8 +47,20 @@ class Character:
             physical_component = self.dexterity // 2
         return base_AC + mental_component + physical_component
     
+    def assign_stat(self, stat: str, amount: int):
+        if self.stats_to_allocate < amount:
+            raise ValueError("Not enough available statpoints.")
+        ability_to_change = getattr(self, stat.lower())
+        if ability_to_change == None:
+            raise ValueError("Invalid ability.")
+        else: 
+            ability_to_change += amount
+            self.stats_to_allocate -= amount
+
+
     def level_up(self):
         self.level += 1
+        self.stats_to_allocate += 2
 
 class Attack:
     def __init__(self, attack_name: str, skill_modifier: int):
