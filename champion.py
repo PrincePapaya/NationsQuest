@@ -32,6 +32,7 @@ class Character:
 
         return_string = return_string + f'AC: {self.get_AC()}\nHP: {self.hitpoints}/{self.max_hp}'
 
+        #Attacks
         return_string = return_string + f'Attacks:'
 
         return return_string
