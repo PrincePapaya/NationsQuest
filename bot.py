@@ -31,12 +31,12 @@ async def on_message(ctx):
             await ctx.channel.send('A rubber room with rats.\nRats.')
             await ctx.channel.send('Rats make me crazy.')
 
-    if 'insane' in ctx.content.lower():
-        if bot.user != ctx.author:
-            await ctx.channel.send('Insane?\nI was insane once.')
-            await ctx.channel.send('They locked me in a house.\nA cushioned house.')
-            await ctx.channel.send('A cushioned house with birds.\nBirds.')
-            await ctx.channel.send('Birds make me insane.')
+    # if 'insane' in ctx.content.lower():
+    #     if bot.user != ctx.author:
+    #         await ctx.channel.send('Insane?\nI was insane once.')
+    #         await ctx.channel.send('They locked me in a house.\nA cushioned house.')
+    #         await ctx.channel.send('A cushioned house with birds.\nBirds.')
+    #         await ctx.channel.send('Birds make me insane.')
 
     if 'luck' in ctx.content.lower() and 'amakiir' in ctx.content.lower():
         if bot.user != ctx.author:
@@ -44,7 +44,7 @@ async def on_message(ctx):
             await ctx.channel.send("Can it swing, will it land?\nWith Amakiiri luck, no it can’t!")
             await ctx.channel.send("(No need to) watch out!\nHere comes the Sword of Sightttttt!")
     
-    if ':pray:' in ctx.content.lower():
+    if 'pray' in ctx.content:
         if bot.user != ctx.author:
             await ctx.channel.send("Thank Ta'La :pray:")
     await bot.tree.sync()
