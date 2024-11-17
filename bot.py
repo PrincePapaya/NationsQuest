@@ -10,7 +10,8 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-OPENAI_KEY = os.getenv('OPENAI_KEY')
+QUOTES = os.getenv('QUOTES')
+TEST = os.getenv('TEST')
 intents = discord.Intents.all()
 prefix = '!'
 bot = commands.Bot(command_prefix=prefix, intents=intents)
@@ -40,8 +41,8 @@ async def on_message(ctx):
     if 'luck' in ctx.content.lower() and 'amakiir' in ctx.content.lower():
         if bot.user != ctx.author:
             await ctx.channel.send("Sword of Sight, Sword of Sight,\nFights whatever a Sword can fight,")
-            await ctx.channel.send("If you tell a lie, it’ll know if you’re right,\nCan it swing, will it land?")
-            await ctx.channel.send("With Amakiiri luck, no it can’t!\n(No need to) watch out, here comes the Sword of Sightttttt!")
+            await ctx.channel.send("Can it swing, will it land?\nWith Amakiiri luck, no it can’t!")
+            await ctx.channel.send("(No need to) watch out!\nHere comes the Sword of Sightttttt!")
     
     if ':pray:' in ctx.content.lower():
         if bot.user != ctx.author:
@@ -61,6 +62,13 @@ async def stressreact(ctx: commands.Context):
     message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
     await message.add_reaction("<:stressed:1285652910952284223>")
     await ctx.send('stress reacted!')
+    await bot.tree.sync()
+
+@bot.hybrid_command()
+async def quote(ctx: commands.Context):
+    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+    qc = bot.get_channel(int(TEST))
+    await qc.send("harro!!!")
     await bot.tree.sync()
 
 @bot.hybrid_command()
