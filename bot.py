@@ -52,24 +52,33 @@ async def on_message(ctx):
 
 @bot.hybrid_command(description = "reacts with :heh:")
 async def hehreact(ctx: commands.Context):
-    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-    await message.add_reaction("<:heh:1285699869239152702>")
-    await ctx.send('heh reacted!')
+    if ctx.message.reference:
+        message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+        await message.add_reaction("<:heh:1285699869239152702>")
+        await ctx.send('heh reacted!')
+    else:
+        await ctx.send("didn't work fool")
     await bot.tree.sync()
 
 @bot.hybrid_command(description="reacts with :stressed:")
 async def stressreact(ctx: commands.Context):
-    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-    await message.add_reaction("<:stressed:1285652910952284223>")
-    await ctx.send('stress reacted!')
+    if ctx.message.reference:
+        message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+        await message.add_reaction("<:stressed:1285652910952284223>")
+        await ctx.send('stress reacted!')
+    else:
+        await ctx.send("didn't work fool")
     await bot.tree.sync()
 
 @bot.hybrid_command(description="instantly quote insanity")
 async def quote(ctx: commands.Context):
-    message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-    qc = bot.get_channel(int(TEST))
-    await qc.send(message.content)
-    await ctx.send('quoted!')
+    if ctx.message.reference:
+        message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+        qc = bot.get_channel(int(TEST))
+        await qc.send(message.content)
+        await ctx.send('quoted!')
+    else:
+        await ctx.send("didn't work fool")
     await bot.tree.sync()
 
 @bot.hybrid_command(description="such a nerd")
@@ -81,6 +90,6 @@ async def anbennar(ctx: commands.Context):
 async def ping(ctx: commands.Context):
     await ctx.send(f'Pong! Latency is {bot.latency}')
     await bot.tree.sync()
-
+    
 
 bot.run(TOKEN)
