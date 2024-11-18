@@ -1,5 +1,7 @@
 #chaos event characters
 
+import dice_roller
+
 class Character:
     def __init__(self, character_name: str, main_stat: str, char_class: str = "<insert class here>", race: str = "<insert race here>"):
         self.name = character_name
@@ -30,10 +32,14 @@ class Character:
         return_string = return_string + f'Constitution: {self.constitution}\nIntelligence: {self.intelligence}\n'
         return_string = return_string + f'Wisdom: {self.wisdom}\nCharisma: {self.charisma}\n\n'
 
-        return_string = return_string + f'AC: {self.get_AC()}\nHP: {self.hitpoints}/{self.max_hp}'
+        return_string = return_string + f'AC: {self.get_AC()}\nHP: {self.hitpoints}/{self.max_hp}\n\n'
 
         #Attacks
         return_string = return_string + f'Attacks:'
+
+        #Temporaries
+        if self.stats_to_allocate > 0:
+            return_string = return_string + f'\n\nSkill Points to Allocate: {self.stats_to_allocate}'
 
         return return_string
         
@@ -64,9 +70,9 @@ class Character:
         self.stats_to_allocate += 2
 
 class Attack:
-    def __init__(self, attack_name: str, skill_modifier: int):
+    def __init__(self, attack_name: str, skill_modifier: int, damage):
         self.attack_name = attack_name
-        self.damage = "not implemented yet"
+        self.damage = damage
     
     def __str__(self):
         return f'{self.attack_name}: {self.damage} damage'
