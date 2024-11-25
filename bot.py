@@ -8,10 +8,14 @@ from dotenv import load_dotenv
 
 from discord.ext import commands
 
+from std import boom
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 QUOTES = os.getenv('QUOTES')
 TEST = os.getenv('TEST')
+KASTENA = os.getenv('KASTENA')
+STD = int(os.getenv('STD'))
 intents = discord.Intents.all()
 prefix = '!'
 bot = commands.Bot(command_prefix=prefix, intents=intents)
@@ -24,6 +28,9 @@ async def on_ready():
 
 @bot.event
 async def on_message(ctx):
+
+    boom(ctx)
+
     if 'crazy' in ctx.content.lower():
         if bot.user != ctx.author:
             await ctx.channel.send('Crazy?\nI was crazy once.')
@@ -47,6 +54,11 @@ async def on_message(ctx):
     if 'pray' in ctx.content:
         if bot.user != ctx.author:
             await ctx.channel.send("Thank Ta'La :pray:")
+
+    if 'bagel' in ctx.content:
+        if bot.user != ctx.author:
+            await ctx.channel.send("Something about round bagels and the sun.")
+    
     await bot.tree.sync()
 
 
