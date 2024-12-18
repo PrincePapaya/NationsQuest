@@ -8,14 +8,11 @@ from dotenv import load_dotenv
 
 from discord.ext import commands
 
-from std import boom
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 QUOTES = os.getenv('QUOTES')
 TEST = os.getenv('TEST')
 KASTENA = os.getenv('KASTENA')
-STD = int(os.getenv('STD'))
 intents = discord.Intents.all()
 prefix = '!'
 bot = commands.Bot(command_prefix=prefix, intents=intents)
@@ -27,9 +24,16 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
 @bot.event
-async def on_message(ctx):
+async def on_message_delete(message: discord.Message):
+    if bot.user != message.author:
+        log_channel = bot.get_channel(1319078418977001482)
+        output = message.content
+        output = 'message deleted:\n' + output + '\nauthor:\n' + str(message.author)
+        await log_channel.send(output)
 
-    boom(ctx)
+
+@bot.event
+async def on_message(ctx):
 
     if 'crazy' in ctx.content.lower():
         if bot.user != ctx.author:
