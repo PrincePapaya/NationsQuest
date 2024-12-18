@@ -30,6 +30,7 @@ async def on_message_delete(message: discord.Message):
         output = message.content
         output = 'message deleted:\n' + output + '\nauthor:\n' + str(message.author)
         await log_channel.send(output)
+        await bot.tree.sync()
 
 
 @bot.event
@@ -83,7 +84,9 @@ async def stressreact(ctx: commands.Context):
         await message.add_reaction("<:stressed:1285652910952284223>")
         await ctx.send('stress reacted!')
     else:
-        await ctx.send("didn't work fool")
+        message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+        await message.add_reaction("<:stressed:1285652910952284223>")
+        await ctx.send('stress reacted!')
     await bot.tree.sync()
 
 @bot.hybrid_command(description="instantly quote insanity")
