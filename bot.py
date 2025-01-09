@@ -13,6 +13,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 QUOTES = os.getenv('QUOTES')
 TEST = os.getenv('TEST')
 KASTENA = os.getenv('KASTENA')
+LOG = os.getenv('LOG')
 intents = discord.Intents.all()
 prefix = '!'
 bot = commands.Bot(command_prefix=prefix, intents=intents)
@@ -26,7 +27,7 @@ async def on_ready():
 @bot.event
 async def on_message_delete(message: discord.Message):
     if bot.user != message.author:
-        log_channel = bot.get_channel(1319078418977001482)
+        log_channel = bot.get_channel(LOG)
         output = message.content
         output = 'message deleted:\n' + output + '\nauthor:\n' + str(message.author) + '\nchannel:\n' + message.channel.name
         await log_channel.send(output)
@@ -39,6 +40,8 @@ async def on_message(ctx):
         lower_ctx = ctx.content.lower()
 
         if 'crazy' in lower_ctx:
+            message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+            await message.add_reaction("<:heh:1285699869239152702>")
             await ctx.channel.send('Crazy?\nI was crazy once.')
             await ctx.channel.send('They locked me in a room.\nA rubber room.')
             await ctx.channel.send('A rubber room with rats.\nRats.')
