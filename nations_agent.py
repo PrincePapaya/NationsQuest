@@ -1,7 +1,58 @@
 import nations_quest
 import random
+import action_logs
+
+from typing import List
 
 # Agent types: missionaries, spies, recruiters, counter ops, thieves
+
+# revised agent types: missionaries, spies, mages, counter ops, recruiters,
+# thieves, explorers, champions, smiths, inscribers, alchemists, travel agents, medics
+
+
+
+class Agency:
+    def __init__(self, affiliation: nations_quest.NationsCountry):
+        self.affiliation = affiliation
+        self.agents: List[Agent] = list()
+        self.agent_types: List[str] = list()
+        self.action_list: List[action_logs.LogEntry] = list()
+        self.spent = 0
+
+    def gain_agent(self):
+        self.agents.append(Agent(self.affiliation))
+    
+    def remove_action(self, action: action_logs.LogEntry):
+        pass
+        # raise error if action isn't in internal reference log
+        # removes an action from the internal reference log
+        # decrease spent agent count by 1
+
+    
+    def assign_agent(self, mission: str):
+        if self.spent >= len(self.agents):
+            raise ValueError('not enough agents')
+        if mission.lower() not in self.agent_types:
+            raise TypeError('agent type unavailable')
+        
+        # create a new internal reference log of what the agent is doing
+        # increase spent agent count by 1
+        # returns the reference log
+    
+    def defend(self) -> int:
+        'to be executed before calling execute_orders. ensures counter ops are counter opping correctly.'
+
+        # find all instances of counter ops in internal log
+        # tally and remove them
+        # return tally to parent country
+
+    def execute_orders(self):
+        'only execute after calling defend, to ensure counter ops are already in place.'
+
+        # collects all actions done by agents, passes them to parent country to carry out
+        # agent actions should be orderd by maliciousness, for defending country's counter ops
+        # resets all agents to being free
+        # clears internal action log
 
 
 class Agent:

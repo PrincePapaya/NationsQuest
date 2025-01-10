@@ -4,6 +4,8 @@ import nations_armies
 import action_logs
 import nations_agent
 
+from typing import List
+
 class NationsCountry:
     def __init__(self, name: str):
         self.name = name
@@ -20,10 +22,10 @@ class NationsCountry:
 
         # nonstandard resources
         # agents
-        self.agents: list[nations_agent.Agent] = [nations_agent.Agent(self)]
+        self.agents: List[nations_agent.Agent] = [nations_agent.Agent(self)]
         self.defending_agents = 0
         self.missionary_efficiency = 2
-        self.agent_jail: list[nations_agent.Agent] = []
+        self.agent_jail: List[nations_agent.Agent] = []
         # buildings
         # army stuff
         self.army = nations_armies.NationalArmy()
@@ -45,7 +47,7 @@ class NationsCountry:
         self.religion_name = religion
 
     def see_log(self) -> str:
-        output: list[str] = []
+        output: List[str] = list()
         for item in self.action_log.get_log():
             output.append(str(item))
         return output

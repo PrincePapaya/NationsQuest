@@ -2,12 +2,14 @@ import time
 import nations_agent
 import nations_quest
 
+from typing import List
+
 class ActionLog:
     def __init__(self):
-        self.history: list[LogEntry] = []
+        self.history: List[LogEntry] = []
     
     def get_log(self, index: int):
-        return self.history[self.history.len() - index]
+        return self.history[len(self.history) - index]
     
     def get_logs(self):
         return self.history
