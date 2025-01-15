@@ -54,8 +54,14 @@ class NewRound(LogEntry):
         return f'**New Round: {round}**'
 
 class AgentAction(LogEntry):
-    def __init__(self):
-        pass
+    def __init__(self, agent: nations_agent.Agent):
+        super().__init__()
+        self.agent = agent
+
+class AgentDefend(AgentAction):
+    def __init__(self, agent: nations_agent.Agent):
+        super().__init__(agent)
+        
 
 class AgentCapture(LogEntry):
     def __init__(self, agent: nations_agent.Agent, other_nation: nations_quest.NationsCountry, capturing: bool):

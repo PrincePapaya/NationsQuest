@@ -1,6 +1,7 @@
 import nations_quest
 import random
 import action_logs
+from action_logs import LogEntry
 
 from typing import List
 
@@ -16,13 +17,13 @@ class Agency:
         self.affiliation = affiliation
         self.agents: List[Agent] = list()
         self.agent_types: List[str] = list()
-        self.action_list: List[action_logs.LogEntry] = list()
+        self.action_list: List[LogEntry] = list()
         self.spent = 0
 
     def gain_agent(self):
         self.agents.append(Agent(self.affiliation))
     
-    def remove_action(self, action: action_logs.LogEntry):
+    def remove_action(self, action: LogEntry):
         pass
         # raise error if action isn't in internal reference log
         # removes an action from the internal reference log
@@ -41,6 +42,11 @@ class Agency:
     
     def defend(self) -> int:
         'to be executed before calling execute_orders. ensures counter ops are counter opping correctly.'
+        defending = 0
+        for log in self.action_list:
+            if log is type(action_logs.AgentDefend):
+                defending += 1
+        return defending
 
         # find all instances of counter ops in internal log
         # tally and remove them
@@ -54,6 +60,10 @@ class Agency:
         # resets all agents to being free
         # clears internal action log
 
+
+class RevisedAgent:
+    def __init__(self):
+        self.name = random.choice(names)
 
 class Agent:
     def __init__(self, affiliation: nations_quest.NationsCountry):

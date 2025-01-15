@@ -27,7 +27,7 @@ async def on_ready():
 @bot.event
 async def on_message_delete(message: discord.Message):
     if bot.user != message.author:
-        log_channel = bot.get_channel(LOG)
+        log_channel = bot.get_channel(int(LOG))
         output = message.content
         output = 'message deleted:\n' + output + '\nauthor:\n' + str(message.author) + '\nchannel:\n' + message.channel.name
         await log_channel.send(output)
