@@ -63,6 +63,9 @@ async def on_message(ctx):
 
         if 'bagel' in lower_ctx:
             await ctx.channel.send("Something about round bagels and the sun.")
+        
+        if 'robot' in lower_ctx:
+            await ctx.channel.send("beep boop")
     
         await bot.tree.sync()
 

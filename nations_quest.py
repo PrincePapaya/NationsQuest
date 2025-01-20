@@ -22,8 +22,8 @@ class NationsCountry:
 
         # nonstandard resources
         # agents
-        self.agents: List[nations_agent.Agent] = [nations_agent.Agent(self)]
-        self.defending_agents = 0
+        self.agents = nations_agent.Agency(self)
+        self.counter_ops = 0
         self.missionary_efficiency = 2
         self.agent_jail: List[nations_agent.Agent] = []
         # buildings

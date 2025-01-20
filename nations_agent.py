@@ -1,24 +1,34 @@
 import nations_quest
+from nations_quest import NationsCountry
 import random
 import action_logs
 from action_logs import LogEntry
-
-from typing import List
+from typing import List, Tuple, Set
+from abc import ABC, abstractmethod
 
 # Agent types: missionaries, spies, recruiters, counter ops, thieves
 
 # revised agent types: missionaries, spies, mages, counter ops, recruiters,
 # thieves, explorers, champions, smiths, inscribers, alchemists, travel agents, medics
 
+# importance 0: counter ops
+# importance 1: harmful
+# importance 2: meddling
+# importance 3: internal
+
 
 
 class Agency:
-    def __init__(self, affiliation: nations_quest.NationsCountry):
+    def __init__(self, affiliation: NationsCountry):
         self.affiliation = affiliation
         self.agents: List[Agent] = list()
-        self.agent_types: List[str] = list()
-        self.action_list: List[LogEntry] = list()
+        self.agent_types: Set[str] = set()
+        self.action_list = list()
         self.spent = 0
+        self.defending_agents = 0
+
+        # usually internal variables
+        self.counter_ops_efficiency = 1
 
     def gain_agent(self):
         self.agents.append(Agent(self.affiliation))
@@ -30,21 +40,43 @@ class Agency:
         # decrease spent agent count by 1
 
     
-    def assign_agent(self, mission: str):
+    def assign_agent(self, mission: str, target: NationsCountry):
+        if target == None:
+            target = self.affiliation
+        mission = mission.lower()
         if self.spent >= len(self.agents):
             raise ValueError('not enough agents')
-        if mission.lower() not in self.agent_types:
+        if mission not in self.agent_types:
             raise TypeError('agent type unavailable')
         
+        if mission == 'counter ops':
+            importance = 0
+            self.action_list.append(tuple(importance, self.counter_ops(target)))
+
+        if mission == 'missionary':
+            pass
+
+        if mission == "mage":
+            pass
+
+        if mission == "recruiter":
+            pass
+
+        if mission == "spy":
+            pass
         # create a new internal reference log of what the agent is doing
         # increase spent agent count by 1
         # returns the reference log
+
+        self.spent += 1
+
+
     
     def defend(self) -> int:
         'to be executed before calling execute_orders. ensures counter ops are counter opping correctly.'
         defending = 0
         for log in self.action_list:
-            if log is type(action_logs.AgentDefend):
+            if log.importance == 0:
                 defending += 1
         return defending
 
@@ -59,11 +91,44 @@ class Agency:
         # agent actions should be orderd by maliciousness, for defending country's counter ops
         # resets all agents to being free
         # clears internal action log
+    
+    # specific agent actions
+    def missionary(self, target: NationsCountry, devotion_change_val: int):
+        if target.religion_name.lower() == self.affiliation.religion_name.lower():
+            target.religion += devotion_change_val
+        else:
+            target.religion -= devotion_change_val
+        
+    
+    def counter_ops(self, target: NationsCountry):
+        target.agents.defending_agents += 1
+
+
+class Action(ABC):
+    def __init__(self, importance: int):
+        self.importance = importance
+
+    @abstractmethod
+    def execute(self):
+        pass
+
+class Missionary(Action):
+    def __init__(self, target: NationsCountry, devotion_change_val: int):
+        super().__init__(2)
+        self.target = target
+        self.devotion_change_val = devotion_change_val
+    
+    def execute(self):
+        pass
 
 
 class RevisedAgent:
     def __init__(self):
         self.name = random.choice(names)
+        
+        # usually internal variables
+        self.counter_ops_efficiency = 1
+        self.thief_catch_chance = 10
 
 class Agent:
     def __init__(self, affiliation: nations_quest.NationsCountry):
