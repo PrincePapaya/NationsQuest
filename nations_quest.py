@@ -10,11 +10,12 @@ class NationsCountry:
     def __init__(self, name: str):
         self.name = name
         # standard resources
-        self.gold = 0
         self.food = 0
-        self.ore = 0
         self.population = 0
-        self.religion = 60
+        self.stone = 0
+        self.iron = 0
+        self.gold = 0
+        self.dedication = 60
         self.religion_name = ''
         self.happiness = 50
         self.chaos_points = 0
@@ -32,6 +33,7 @@ class NationsCountry:
         # research (researched and not)
         # enrichment values
         # food type
+        self.food_type = None
 
     def __str__(self) -> str:
         return self.name

@@ -62,10 +62,16 @@ async def on_message(ctx):
             await ctx.channel.send("Thank Ta'La :pray:")
 
         if 'bagel' in lower_ctx:
-            await ctx.channel.send("Something about round bagels and the sun.")
+            await ctx.channel.send("Bagels? I was bagels once.")
+            await ctx.channel.send('They bageled me in a bagel.\nA bagel bagel.')
+            await ctx.channel.send('A bagel bagel with bagels.\nBagels.')
+            await ctx.channel.send('Bagels make me bagel.')
         
         if 'robot' in lower_ctx:
             await ctx.channel.send("beep boop")
+
+        if 'cook' in lower_ctx:
+            await ctx.channel.send("rah rah gramerca")
     
         await bot.tree.sync()
 
