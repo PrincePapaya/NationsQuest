@@ -2,6 +2,8 @@
 import os
 import random
 
+from datetime import datetime
+
 import discord
 from discord import app_commands
 from dotenv import load_dotenv
@@ -72,6 +74,12 @@ async def on_message(ctx):
 
         if 'cook' in lower_ctx:
             await ctx.channel.send("rah rah gramerca")
+        
+        if "ta'la" in lower_ctx:
+            await ctx.channel.send("Praise Eclyae :pray:")
+
+        if "calloro" in lower_ctx:
+            await ctx.channel.send("ALL HAIL THE SUN GOD")
     
         await bot.tree.sync()
 

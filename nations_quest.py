@@ -15,8 +15,9 @@ class NationsCountry:
         self.stone = 0
         self.iron = 0
         self.gold = 0
-        self.dedication = 60
+        self.dedication = 0
         self.religion_name = ''
+        self.knowledge_points = 0
         self.happiness = 50
         self.chaos_points = 0
         self.action_log = action_logs.ActionLog()
@@ -32,8 +33,6 @@ class NationsCountry:
         self.army = nations_armies.NationalArmy()
         # research (researched and not)
         # enrichment values
-        # food type
-        self.food_type = None
 
     def __str__(self) -> str:
         return self.name
