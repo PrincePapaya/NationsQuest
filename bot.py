@@ -60,7 +60,7 @@ async def on_message(ctx):
             await ctx.channel.send("Can it swing, will it land?\nWith Amakiiri luck, no it can’t!")
             await ctx.channel.send("(No need to) watch out!\nHere comes the Sword of Sightttttt!")
         
-        if 'pray' in lower_ctx:
+        if 'pray' in lower_ctx or 'pr*y' in lower_ctx or 'p***' in lower_ctx and 'spray' not in lower_ctx:
             await ctx.channel.send("Thank Ta'La :pray:")
 
         if 'bagel' in lower_ctx:
@@ -72,7 +72,7 @@ async def on_message(ctx):
         if 'robot' in lower_ctx:
             await ctx.channel.send("beep boop")
 
-        if 'cook' in lower_ctx:
+        if 'burn ' in lower_ctx:
             await ctx.channel.send("rah rah gramerca")
         
         if "ta'la" in lower_ctx:
@@ -80,6 +80,30 @@ async def on_message(ctx):
 
         if "calloro" in lower_ctx:
             await ctx.channel.send("ALL HAIL THE SUN GOD")
+
+        if "vethri" in lower_ctx:
+            await ctx.channel.send("<:get_banned:1381146032678899743>")
+
+        if "heart is a muscle the size of a rat" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "lives in a pineapple under the sea" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "absorbent and yellow and porous is he" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "if nautical nonsense be something you wish" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "then drop on the deck and flop like a fish" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "spongebob squarepants" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS\nSPONGEBOB SQUAREPANTS\nSPONGEBOBBBB\nSQUAREPANTSSSS")
+
+        if "jeff" in lower_ctx:
+            await ctx.channel.send('the bestest boy')
     
         await bot.tree.sync()
 
