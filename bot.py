@@ -81,8 +81,8 @@ async def on_message(ctx):
         if "calloro" in lower_ctx:
             await ctx.channel.send("ALL HAIL THE SUN GOD")
 
-        if "vethri" in lower_ctx:
-            await ctx.channel.send("<:get_banned:1381146032678899743>")
+        # if "vethri" in lower_ctx:
+        #     await ctx.channel.send("<:get_banned:1381146032678899743>")
 
         if "heart is a muscle the size of a rat" in lower_ctx:
             await ctx.channel.send("SPONGEBOB SQUAREPANTS")
