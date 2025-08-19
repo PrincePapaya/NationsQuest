@@ -104,6 +104,15 @@ async def on_message(ctx):
 
         if "jeff" in lower_ctx:
             await ctx.channel.send('the bestest boy')
+        
+        if "dog" in lower_ctx:
+            await ctx.channel.send('we love goose')
+        
+        if "vethri" in lower_ctx:
+            await ctx.channel.send('wtf dude')
+
+        if "^^vv<><>ba" in lower_ctx:
+            await ctx.channel.send('https://discord.gg/udC4Qt3TwF')
     
         await bot.tree.sync()
 
