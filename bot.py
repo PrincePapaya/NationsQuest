@@ -72,19 +72,22 @@ async def on_message(ctx):
         if 'robot' in lower_ctx:
             await ctx.channel.send("beep boop")
 
-        if 'burn ' in lower_ctx:
-            await ctx.channel.send("rah rah gramerca")
+        # if 'burn ' in lower_ctx:
+        #     await ctx.channel.send("rah rah gramerca")
         
-        if "ta'la" in lower_ctx:
-            await ctx.channel.send("Praise Eclyae :pray:")
+        # if "ta'la" in lower_ctx:
+        #     await ctx.channel.send("Praise Eclyae :pray:")
 
-        if "calloro" in lower_ctx:
-            await ctx.channel.send("ALL HAIL THE SUN GOD")
+        # if "calloro" in lower_ctx:
+        #     await ctx.channel.send("ALL HAIL THE SUN GOD")
 
         # if "vethri" in lower_ctx:
         #     await ctx.channel.send("<:get_banned:1381146032678899743>")
 
         if "heart is a muscle the size of a rat" in lower_ctx:
+            await ctx.channel.send("SPONGEBOB SQUAREPANTS")
+        
+        if "brain is the size of a 3-month-old cat" in lower_ctx:
             await ctx.channel.send("SPONGEBOB SQUAREPANTS")
         
         if "lives in a pineapple under the sea" in lower_ctx:
@@ -102,17 +105,17 @@ async def on_message(ctx):
         if "spongebob squarepants" in lower_ctx:
             await ctx.channel.send("SPONGEBOB SQUAREPANTS\nSPONGEBOB SQUAREPANTS\nSPONGEBOBBBB\nSQUAREPANTSSSS")
 
-        if "jeff" in lower_ctx:
-            await ctx.channel.send('the bestest boy')
+        # if "jeff" in lower_ctx:
+        #     await ctx.channel.send('the bestest boy')
         
         if "dog" in lower_ctx and "raw" not in lower_ctx:
             await ctx.channel.send('we love goose')
         
-        if "vethri" in lower_ctx:
-            await ctx.channel.send('wtf dude')
+        # if "vethri" in lower_ctx:
+        #     await ctx.channel.send('wtf dude')
 
-        if "^^vv<><>ba" in lower_ctx:
-            await ctx.channel.send('https://discord.gg/udC4Qt3TwF')
+        # if "^^vv<><>ba" in lower_ctx:
+        #     await ctx.channel.send('https://discord.gg/udC4Qt3TwF')
     
         await bot.tree.sync()
 
