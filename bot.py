@@ -105,8 +105,8 @@ async def on_message(ctx):
         if "spongebob squarepants" in lower_ctx:
             await ctx.channel.send("SPONGEBOB SQUAREPANTS\nSPONGEBOB SQUAREPANTS\nSPONGEBOBBBB\nSQUAREPANTSSSS")
 
-        # if "jeff" in lower_ctx:
-        #     await ctx.channel.send('the bestest boy')
+        if "jeff" in lower_ctx and "jeffr" not in lower_ctx:
+            await ctx.channel.send('the bestest boy')
         
         if "dog" in lower_ctx and "raw" not in lower_ctx:
             await ctx.channel.send('we love goose')
@@ -161,6 +161,11 @@ async def anbennar(ctx: commands.Context):
 @bot.hybrid_command(description= 'sends the bot\'s latency.')
 async def ping(ctx: commands.Context):
     await ctx.send(f'Pong! Latency is {bot.latency}')
+    await bot.tree.sync()
+
+@bot.hybrid_command(description= 'adds an emoji to the server. hopefully.')
+async def add_stress(ctx: commands.Context):
+    await ctx.guild.create_custom_emoji(name='stressed', image= None, roles=None, reason=None)
     await bot.tree.sync()
     
 
