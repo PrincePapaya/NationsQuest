@@ -105,7 +105,7 @@ async def on_message(ctx):
         if "spongebob squarepants" in lower_ctx:
             await ctx.channel.send("SPONGEBOB SQUAREPANTS\nSPONGEBOB SQUAREPANTS\nSPONGEBOBBBB\nSQUAREPANTSSSS")
 
-        if "jeff" in lower_ctx and "jeffr" not in lower_ctx:
+        if "jeff" in lower_ctx and "jeffr" not in lower_ctx and "epst" not in lower_ctx:
             await ctx.channel.send('the bestest boy')
         
         if "dog" in lower_ctx and "raw" not in lower_ctx:
