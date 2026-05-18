@@ -142,6 +142,11 @@ async def stressreact(ctx: commands.Context):
         await ctx.send('stress reacted!')
     await bot.tree.sync()
 
+@bot.hybrid_command(description="ban someone hehe")
+async def sudo_kill(ctx: commands.Context):
+    await ctx.send("bro don't do that")
+    await bot.tree.sync()
+
 @bot.hybrid_command(description="instantly quote insanity")
 async def quote(ctx: commands.Context):
     if ctx.message.reference:

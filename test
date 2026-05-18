@@ -1,0 +1,48 @@
+class Post:
+    def __init__(self, post_id:str, author:str, text:str):
+        # initializing the Post with certain parameters, and
+        # setting some parameters automatically
+        self.post_type = "Post"
+        self.post_id = post_id
+        if len(self.post_id) != 10:
+            raise ValueError("Your post id must be exactly 10 digits.")
+        if not self.post_id.isnumeric():
+            raise ValueError("Your post id must include only decimal digits.")
+        self.author = author
+        if len(self.author) > 20:
+            raise ValueError("Author name is too long.")
+        if len(self.author) < 1:
+            raise ValueError("Must input an author name.")
+        self.text = text
+        self.likes = 0
+        self.timestamp = 0.0
+    
+    def __str__(self):
+        # this is so that if you print a Post, it'll print this
+        # string by defining its internal toString function
+        return (f"{self.post_type} ({self.post_id}) by @{self.author} at {self.timestamp:.2f}:\n{self.text}\n-> {self.likes} likes")
+
+class TextPost(Post):
+    def __init__(self, post_id:str, author:str, text:str):
+        super().__init__(post_id, author, text)
+        self.post_type = "TextPost"
+
+class StoryPost(Post):
+    def __init__(self, post_id:str, author:str, text:str, children:list):
+        super().__init__(post_id, author, text)
+        self.post_type = "StoryPost"
+        self.children = children
+        if type(self.children) != list:
+            raise ValueError("Must input a list of post ids.")
+        for child in self.children:
+            if len(child) != 10:
+                raise ValueError("Each story's post id must be exactly 10 digits.")
+            if not child.isnumeric():
+                raise ValueError("Each story's post id must include only decimal digits.")
+            if child == self.post_id:
+                raise ValueError("This posts stories cannot include itself.")
+    
+    def __str__(self):
+        return(f"{self.post_type} ({self.post_id}) by @{self.author} at {self.timestamp:.2f}:\n{self.text}\nContains: [{self.children}]\n-> {self.likes} likes")
+        
+    
